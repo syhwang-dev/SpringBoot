@@ -1,0 +1,9 @@
+package edu.pnu.service;
+
+public class MemberService {
+	
+	public Member getMember(Long id) {
+		
+	}
+
+}

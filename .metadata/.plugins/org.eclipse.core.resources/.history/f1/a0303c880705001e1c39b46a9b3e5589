@@ -1,0 +1,13 @@
+package com.rubypaper.domain;
+
+public class BoardVO {
+	
+	private int seq;
+	private String title;
+	private String weiter;
+	private String content;
+	private Date createDate = new Date();
+	private int cnt = 0;
+	
+
+}

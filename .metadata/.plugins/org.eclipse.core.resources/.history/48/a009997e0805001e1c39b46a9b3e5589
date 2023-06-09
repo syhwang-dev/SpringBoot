@@ -1,0 +1,74 @@
+package com.rubypaper.controller;
+
+import java.util.Date;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rubypaper.domain.BoardVO;
+
+//ctrl + shift + o: 자동으로 import
+//@Controller
+@RestController
+public class BoardController{
+	public BoardController() {
+		System.out.println("=".repeat(50));
+		System.out.println("BoardController가 생성되었습니다.");
+		System.out.println("=".repeat(50));
+	}
+	
+	// 호출하는 url은 다 같음
+	@GetMapping("/hello")
+	public String hello1(String name) {
+		return "Get Hello : " + name;
+	}
+	
+	// 브라우저에서 안 됨
+	@PostMapping("/hello")
+	public String hello2(String name) {
+		return "Post Hello : " + name;
+	}
+	
+	@PutMapping("/hello")
+	public String hello3(String name) {
+		return "Put Hello : " + name;
+	}
+	
+	@DeleteMapping("/hello")
+	public String hello4(String name) {
+		return "Delete Hello : " + name;
+	}
+	
+	// 추가
+	@GetMapping("/getBoard")
+	public BoardVO getBoard() {
+		board.setSeq(1);
+		board.setTitle("테스트 제목");
+		board.setWriter("테스터");
+		board.setContent("테스트 내용입니다!");
+		board.setCreateDAte(new Date());
+		board.setCnt(0);
+		return board;
+	}
+	
+	@GetMapping("/getBoard")
+	public BoardVO getBoard1() {
+		board.setSeq(1);
+		board.setTitle("테스트 제목");
+		board.setWriter("테스터");
+		board.setContent("테스트 내용입니다!");
+		board.setCreateDAte(new Date());
+		board.setCnt(0);
+		return board;
+	}
+}
+
+// 내가 인스턴스를 만든적이 없는데 자동으로 객체를 생성 -> 부트가 만들어줌!
+// 어디에다가 저장을 하지 않을까? 컨테이너에 저장을 함.
+// @RestController 이런 어노테이션이 붙어있으면 부트가 자동으로 생성해줌.
+// @RestController든 @Controller든 다른 어노테이션이든, 시작점이 따로 있음.
+// 이 클래스가 하는 역할에 따라 조금씩 다른 어노테이션 이름을 줌.
+// 그러니까 굳이 @Controller를 사용하지 않아도 된다는 뜻임. 하지만 협업을 위해 통상적으로 사용하자.

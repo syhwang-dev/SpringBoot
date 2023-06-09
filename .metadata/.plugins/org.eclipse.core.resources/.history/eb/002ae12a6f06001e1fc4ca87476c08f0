@@ -1,0 +1,41 @@
+// step04
+package edu.pnu.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import edu.pnu.dao.MemberDao;
+import edu.pnu.domain.Member;
+
+public class MemberService {
+	
+	// step07
+	private MemberDao memberDao;
+	
+	// step09
+	public Member getMember(Long id) {
+		return memberDao.getMember(id);
+	}
+	
+	// step15
+	private List<Member> list;
+	
+	// step11
+	public MemberService() {
+		memberDao = new MemberDao();
+		
+		// step14
+		list = new ArrayList<>();  
+		for (int i = 1 ; i <= 5 ; i++) {
+			list.add(new Member(i, "1234", "이름"+i, new Date()));
+		}
+	}
+
+	// step13
+	public List<Member> getMembers() {
+		return list;
+	}
+	
+	
+}
