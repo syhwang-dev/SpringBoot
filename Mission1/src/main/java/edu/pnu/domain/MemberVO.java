@@ -51,10 +51,7 @@ public class MemberVO {
 		this.regidate = regidate;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", pass=" + pass + ", name=" + name + ", regidate=" + regidate + "]";
-	}    
+   
 }
 
 

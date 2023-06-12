@@ -26,6 +26,8 @@ public class MemberController {
 		System.out.println("MemberController가 생성되었습니다.");
 		log.info("MemberController가 생성되었습니다.");
 		
+		memberService = new MemberService();
+		
 	}
 	
 	// step02
