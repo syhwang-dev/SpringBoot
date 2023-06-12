@@ -1,5 +1,7 @@
 package edu.pnu.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,19 +25,19 @@ public class MemberController {
 	
 	// {id} 추가하는 이유: 아래의 insert / update / delete와 경로가 중복되므로
 	@GetMapping("/memeber/{id}")
-	public MemberVO getMember(@PathVariable Integer id) {
+	public List<MemberVO> getMember(@PathVariable Integer id) {
 		return memberService.getMembers();
 	}
 
 	// 아래의 3개는 각각 insert / update / delete 이기 때문에 경로가 같아도 됨. 
 	@PostMapping("/member")  
-	public int addMember(MemberVO member) {  
+	public MemberVO addMember(MemberVO member) {  
 		return memberService.addMember(member);
 //		return 0;
 	}
 	
 	@PutMapping("/member")  
-	public int updateMembers(MemberVO member){
+	public MemberVO updateMembers(MemberVO member){
 		return memberService.updateMember(member);
 	}
 	

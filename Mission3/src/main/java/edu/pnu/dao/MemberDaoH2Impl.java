@@ -24,4 +24,22 @@ public class MemberDaoH2Impl implements MemberInterface {
 		return null;
 	}
 
+	@Override
+	public MemberVO updataMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteMember(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public MemberVO updateMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

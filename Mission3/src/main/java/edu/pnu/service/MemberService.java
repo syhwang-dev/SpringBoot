@@ -32,7 +32,7 @@ public class MemberService {
 	}
 
 	public int deleteMember(Integer id) {
-		return 0;
+		return memberDao.deleteMember(id);
 	}
 	
 
