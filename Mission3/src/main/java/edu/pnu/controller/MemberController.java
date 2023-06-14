@@ -19,30 +19,34 @@ public class MemberController {
 	
 	public MemberController() {
 		System.out.println("MemberController가 생성되었습니다.");
-		
 		memberService = new MemberService();
 	}
 	
-	// {id} 추가하는 이유: 아래의 insert / update / delete와 경로가 중복되므로
-	@GetMapping("/memeber/{id}")
-	public List<MemberVO> getMember(@PathVariable Integer id) {
+	@GetMapping("/members")
+	public List<MemberVO> getMembers() {
 		return memberService.getMembers();
+	}
+	
+	// {id} 추가하는 이유: 아래의 insert / update / delete와 경로가 중복되므로
+	@GetMapping("/member/{id}")
+	public MemberVO getMember(@PathVariable Integer id) {
+		return memberService.getMember(id);
 	}
 
 	// 아래의 3개는 각각 insert / update / delete 이기 때문에 경로가 같아도 됨. 
-	@PostMapping("/member")  
+	@PostMapping("/member")
+//	@RequestMapping(value="/member", method=RequestMethod.POST)
 	public MemberVO addMember(MemberVO member) {  
 		return memberService.addMember(member);
-//		return 0;
 	}
 	
 	@PutMapping("/member")  
-	public MemberVO updateMembers(MemberVO member){
+	public MemberVO updateMember(MemberVO member){
 		return memberService.updateMember(member);
 	}
 	
-	@DeleteMapping("/member")  
-	public int deleteMember(Integer id){
+	@DeleteMapping("/member/{id}")  
+	public int deleteMember(@PathVariable Integer id){
 		return memberService.deleteMember(id);
 	}
 }

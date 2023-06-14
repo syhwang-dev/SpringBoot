@@ -12,9 +12,9 @@ public interface MemberInterface {
 	
 	MemberVO addMember(MemberVO member);
 	
-	MemberVO updataMember(MemberVO member);
+	MemberVO updateMember(MemberVO member);
 	
 	int deleteMember(Integer id);
 
-	MemberVO updateMember(MemberVO member);
+	
 }
