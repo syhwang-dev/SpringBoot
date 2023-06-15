@@ -3,6 +3,7 @@ package edu.pnu.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import edu.pnu.domain.MemberVO;
 
@@ -19,29 +20,29 @@ public class MemberDaoListImpl implements MemberInterface {
 	}
 	
 	@Override
-	public List<MemberVO> getMembers() {
-		return list;
+	public Map<String, Object> getMembers() {
+		return (Map<String, Object>) list;
 	}
 	
 	@Override
-	public MemberVO getMember(Integer id) {
+	public Map<String, Object> getMember(Integer id) {
 		for (MemberVO m : list) {
 			if (m.getId() == id)
-				return m;
+				return (Map<String, Object>) m;
 		}
 		return null;
 	}
 	
 	@Override
-	public MemberVO addMember(MemberVO member) {
+	public Map<String, Object> addMember(MemberVO member) {
 		member.setId(list.size() + 1);
 		member.setRegidate(new Date());
 		list.add(member);
-		return member;
+		return (Map<String, Object>) member;
 	}
 
 	@Override
-	public MemberVO updateMember(MemberVO member) {
+	public Map<String, Object> updateMember(MemberVO member) {
 		for (MemberVO m : list) {
 			if (m.getId() == member.getId()) {
 				// name과 pass의 속성 모두 바꿔야 하며, 둘 중 하나만 바꿀 경우 'null' 값이 들어감.
@@ -54,20 +55,20 @@ public class MemberDaoListImpl implements MemberInterface {
 					m.setName(member.getName());
 				if (member.getPass() != null) 
 					m.setPass(member.getPass());
-				return m;
+				return (Map<String, Object>) m;
 			}
 		}
 		return null;
 	}
 	
 	@Override
-	public int deleteMember(Integer id) {
+	public Map<String, Object> deleteMember(Integer id) {
 		for (MemberVO m : list) {
 			if (m.getId() == id) {
 				list.remove(m);
-				return 0;
+//				return 0;
 			}
 		}
-		return -1;
+		return null;
 	}
 }

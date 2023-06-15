@@ -1,7 +1,7 @@
 package edu.pnu.service;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.pnu.dao.LogDao;
 import edu.pnu.dao.MemberDaoH2Impl;
@@ -25,60 +25,64 @@ public class MemberService {
 	}
 	
 	public List<MemberVO> getMembers() {
-		HashMap<String, Object> map = memberDao.getMembers();
+		Map<String, Object> map = memberDao.getMembers();
 		
 		String sqlstring = map.get("sqlstring").toString();
 		boolean success = (boolean) map.get("success");
 		
         logDao.insertLog("GET", sqlstring, success);
         
-        return memberDao.getMembers();
+//        return memberDao.getMembers();
+        return (List<MemberVO>) map.get("result");
 	}
 	
 
 	public MemberVO getMember(Integer id) {
-		HashMap<String, Object> map = memberDao.getMember(id);
+		Map<String, Object> map = memberDao.getMember(id);
 		
-		String sqlstring = map.get("sqlstring").toString();
-		boolean success = (boolean) map.get("success");
-		
+		// String sqlstring = map.get("sqlstring").toString();
+		String sqlstring = (String) map.get("sqlstring");
+		boolean success = false;
+		if(map.get("result") != null) success = true;
+						
         logDao.insertLog("GET", sqlstring, success);
 		
-		return memberDao.getMember(id);
+//		return memberDao.getMember(id);
+        return (MemberVO) map.get("result");
 	}
 	
 
 	public MemberVO addMember(MemberVO member) {
-		HashMap<String, Object> map = memberDao.addMember(member);
+		Map<String, Object> map = memberDao.addMember(member);
 		
 		String sqlstring = map.get("sqlstring").toString();
 		boolean success = (boolean) map.get("success");
 		
         logDao.insertLog("POST", sqlstring, success);
         
-		return memberDao.addMember(member);
+		return (MemberVO) map.get("result");
 	}
 	
 
 	public MemberVO updateMember(MemberVO member) {
-		HashMap<String, Object> map = memberDao.updateMember(member);
+		Map<String, Object> map = memberDao.updateMember(member);
 		
 		String sqlstring = map.get("sqlstring").toString();
 		boolean success = (boolean) map.get("success");
 		
         logDao.insertLog("PUT", sqlstring, success);
         
-		return memberDao.updateMember(member);
+		return (MemberVO) map.get("result");
 	}
 
 	public int deleteMember(Integer id) {
-		HashMap<String, Object> map = memberDao.deleteMember(id);
+		Map<String, Object> map = memberDao.deleteMember(id);
 		
 		String sqlstring = map.get("sqlstring").toString();
 		boolean success = (boolean) map.get("success");
 		
         logDao.insertLog("DELETE", sqlstring, success);
 		
-		return memberDao.deleteMember(id);
+		return (int) map.get("result");
 	}
 }

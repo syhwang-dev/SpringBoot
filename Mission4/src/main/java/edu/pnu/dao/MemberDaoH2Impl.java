@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -34,11 +36,14 @@ public class MemberDaoH2Impl implements MemberInterface {
 	}
 
 	@Override
-	public List<MemberVO> getMembers() {
+	public Map<String, Object> getMembers() {
+		Map<String, Object> map = new HashMap<>();
 		List<MemberVO> mList = new ArrayList<>();
+		String sql = "select * from member order by id";
 		try {
+			
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from member order by id");
+			ResultSet rs = st.executeQuery(sql);
 			
 			while (rs.next()) {
 				MemberVO m = MemberVO.builder()
@@ -48,12 +53,18 @@ public class MemberDaoH2Impl implements MemberInterface {
 							.build();
 				mList.add(m);
 			}
+			map.put("result", mList);
+			map.put("sqlstring", sql);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
+			map.put("result", null);
+			map.put("sqlstring", sql);
+			
 		}
-		return mList;
+		return map;
 	}
 
 	@Override
@@ -79,7 +90,7 @@ public class MemberDaoH2Impl implements MemberInterface {
 	}
 
 	@Override
-	public MemberVO addMember(MemberVO member) {
+	public Map<String, Object> addMember(MemberVO member) {
 		try {
 			Statement st = con.createStatement();
 			String sql = String.format("insert into member (name, pass) values ('%s', '%s')", member.getName(), member.getPass());			
@@ -88,11 +99,11 @@ public class MemberDaoH2Impl implements MemberInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return member;
+		return (Map<String, Object>) member;
 	}
 
 	@Override
-	public MemberVO updateMember(MemberVO member) {
+	public Map<String, Object> updateMember(MemberVO member) {
 		PreparedStatement ps;
 	    try {
 	        ps = con.prepareStatement("update member SET name = ?, pass = ? WHERE id = ?");
@@ -106,11 +117,11 @@ public class MemberDaoH2Impl implements MemberInterface {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-		return member;
+		return (Map<String, Object>) member;
 	}
 
 	@Override
-	public int deleteMember(Integer id) {
+	public Map<String, Object> deleteMember(Integer id) {
 		try {
 		Statement st = con.createStatement();
 		int cnt = st.executeUpdate(String.format("delete from member where id = %d", id));
@@ -118,9 +129,9 @@ public class MemberDaoH2Impl implements MemberInterface {
 		st.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return -1;
+//			return -1;
 		}
-		return 0;
+		return null;
 	}
 
 }

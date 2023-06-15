@@ -11,16 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.pnu.domain.MemberVO;
 import edu.pnu.service.MemberService;
+import lombok.RequiredArgsConstructor;
 
 @RestController  // 부트 인식을 위해 필요
+@RequiredArgsConstructor
 public class MemberController {
 	
-	private MemberService memberService;
+	private final MemberService memberService;
 	
-	public MemberController() {
-		System.out.println("MemberController가 생성되었습니다.");
-		memberService = new MemberService();
-	}
+//	public MemberController() {
+//		System.out.println("MemberController가 생성되었습니다.");
+//		memberService = new MemberService();
+//	}
 	
 	@GetMapping("/members")
 	public List<MemberVO> getMembers() {
