@@ -12,4 +12,25 @@
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
 	</section>
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="Chapter041"/>
+			<item value="Chapter04"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="Chapter041"/>
+			<item value="Chapter04"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
+		<item key="width" value="480"/>
+		<item key="height" value="531"/>
+		<item key="x" value="1014"/>
+		<item key="y" value="130"/>
+	</section>
 </section>
