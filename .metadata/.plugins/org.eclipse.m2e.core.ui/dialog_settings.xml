@@ -14,12 +14,14 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="Chapter042"/>
 			<item value="Chapter041"/>
 			<item value="Chapter04"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="Chapter042"/>
 			<item value="Chapter041"/>
 			<item value="Chapter04"/>
 		</list>
