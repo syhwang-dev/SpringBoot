@@ -44,17 +44,15 @@ public class DynamicQueryTest {
 		BooleanBuilder builder = new BooleanBuilder();
 		QBoard qboard = QBoard.board;
 		
-		if (map.get("TITLE").equals("TITLE") && map.get("CONTENT").equals("CONTENT")) {
-			builder.and(qboard.title.like("%" + map.get("TITLE") + "%"));
-		} else if (searchCondition.equals("CONTENT")) {
-			builder.or(qboard.content.like("%" + seachKeyword + "%"));
-		}
-		
-		
 		Set<String> keys = map.keySet();
 		for(String key : keys) {
-			System.out.println("----> " + key);
-			
+//			System.out.println("----> " + key);
+			if (key.equals("TITLE")) {
+				builder.and(qboard.title.like("%" + map.get("TITLE") + "%"));
+			} else if (key.equals("CONTENT")) {
+				builder.and(qboard.content.like("%" + map.get("CONTENT") + "%"));
+			}
+		
 		}
 	}
 	
@@ -83,7 +81,26 @@ public class DynamicQueryTest {
 		}	
 	}
 	
+	// Title이 '%title1%'인 데이터를 출력
+	@Test
 	public void testDynamicQuery1() {
+		BooleanBuilder builder = new BooleanBuilder();
+		QBoard qboard = QBoard.board;
+		
+		builder.and(qboard.title.like("%title1%"));
+		
+		Iterable<Board> list = boardRepo.findAll(builder);
+		
+		for (Board b : list) {
+			System.out.println(b);
+		}
+	}
+	
+	// 데이터를 출력할 때 Page 기능 추가
+//	@Test
+	public void testDynamicQuery3() {
+	
+		
 		
 	}
 	

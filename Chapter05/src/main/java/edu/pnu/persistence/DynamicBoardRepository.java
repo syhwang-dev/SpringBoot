@@ -13,7 +13,7 @@ public interface DynamicBoardRepository extends QuerydslPredicateExecutor<Board>
 	List<Board> findByTitleLike(String searchKeyword);
 	
 	// Junit에서 실행 > Title이 "%Title1%인 데이터를 출력"
-	List<Board> findByTitleContainingAndCntGreaterThan(String searchKeyword, Long cnt);
+//	List<Board> findByTitleContainingAndCntGreaterThan(String searchKeyword, Long cnt);
 
 	// Junit에서 실행 > cnt가 50보다 큰 데이터를 
 }
