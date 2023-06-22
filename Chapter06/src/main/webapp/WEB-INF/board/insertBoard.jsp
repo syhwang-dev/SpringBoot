@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						value=" 새글 등록 " /></td>
+						value="새글 등록 " /></td>
 				</tr>
 			</table>
 		</form>

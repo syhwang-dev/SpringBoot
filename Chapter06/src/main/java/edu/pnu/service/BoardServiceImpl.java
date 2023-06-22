@@ -27,18 +27,26 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board getBoard(Board board) {
 		// return boardRepo.findById(board.getSeq()); 일 때 에러가 발생함.
-		return boardRepo.findById(board.getSeq()).get();
+		// return boardRepo.findById(board.getSeq()).get();
+		Board b = boardRepo.findById(board.getSeq()).get();
+		b.setCnt(b.getCnt()+1);
+		return boardRepo.save(b);
 		
 	}
 	
 	@Override
 	public void updateBoard(Board board) {
+		Board findBoard = boardRepo.findById(board.getSeq()).get();
+		
+		findBoard.setTitle(board.getTitle());
+		findBoard.setContent(board.getContent());
+		boardRepo.save(findBoard);
 		
 	}
 	
 	@Override
 	public void deleteBoard(Board board) {
-		
+		boardRepo.deleteById(board.getSeq());
 	}
 	
 }

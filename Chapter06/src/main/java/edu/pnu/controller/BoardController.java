@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.pnu.domain.Board;
@@ -54,6 +55,13 @@ public class BoardController {
 		return "getBoardList";
 	}
 	
+	@PostMapping("/getBoardList")
+	public String getBoardList1(Model model) {
+		model.addAttribute("boardList",
+				boardService.getBoardList());
+		return "getBoardList";
+	}
+	
 	@GetMapping("/insertBoard")
 	public String insertBoard() {
 		return "insertBoard";
@@ -71,27 +79,27 @@ public class BoardController {
 		return "redirect:getBoardList";
 	}
 	
+	// 서비스 호출
 	@GetMapping("/getBoard")
 	public String getBoard(Long seq, Model model) {
 		Board board = boardService.getBoard(Board.builder().seq(seq).build());
 		model.addAttribute("board", board);
 		// jsp에서 쓰는 방식 > EL > ${board.seq}
 		return "getBoard";
-	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@PostMapping("/updateBoard")
+	public String updateBoard(Board board) {
+		boardService.updateBoard(board);
+		// return "redirect:getBoardList";
+		return "forward:getBoardList";
+	}
+
+	@GetMapping("/deleteBoard")
+	public String deleteBoard(Board board) {
+		boardService.deleteBoard(board);
+		return "forward:getBoardList";
+	}
 	
 	
 	
