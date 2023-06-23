@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<h1><font color="green">BoardException 발생!</font></h1>
+<a th:href="@{/}">메인 화면으로</a><hr>
+<table>
+	<tr>
+		<th bgcolor="green" align="left">예외 메시지 : [[${exception.message}]]</th>
+	</tr>
+	
+	<!-- 배포할 땐 없어야 할 코드 - 사용자에게 보여지면 신뢰성이 떨어짐 -->
+	<tr th:each="trace : ${exception.stackTrace}">
+		<td th:text="${trace}"></td>
+	</tr>
+</table>
+</body>
+</html>

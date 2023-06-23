@@ -6,25 +6,27 @@
 </head>
 <body th:align="center">
 	<h1>게시글 목록</h1>
-		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="800">
-			<tr>
-				<th bgcolor="pink" width="100">번호</th>
-				<th bgcolor="pink" width="200">제목</th>
-				<th bgcolor="pink" width="150">작성자</th>
-				<th bgcolor="pink" width="150">등록일</th>
-				<th bgcolor="pink" width="100">조회수</th>
-			</tr>
+	<h3><font color="red" th:text="${session['member'].name}"></font>님, 게시판 입장을 환영합니다.</h3>
+	<a th:href="@{/logout}">LOGOUT</a><hr>
+	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="800">
+		<tr>
+			<th bgcolor="pink" width="100">번호</th>
+			<th bgcolor="pink" width="200">제목</th>
+			<th bgcolor="pink" width="150">작성자</th>
+			<th bgcolor="pink" width="150">등록일</th>
+			<th bgcolor="pink" width="100">조회수</th>
+		</tr>
 
-			<tr th:each="board, state : ${boardList}">
-				<td th:text="${state.count}"></td>
-				<!--<td th:text="${board.seq}">-->
-				<td><a th:href="@{/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
-				<td th:text="${board.writer}">
-				<td th:text="${board.createDate}">
-				<td th:text="${board.cnt}">
-			</tr>
-		</table>
-		<br>
-		<a th:href="insertBoard">새글 등록</a>
+		<tr th:each="board, state : ${boardList}">
+			<td th:text="${state.count}"></td>
+			<!--<td th:text="${board.seq}">-->
+			<td><a th:href="@{/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
+			<td th:text="${board.writer}">
+			<td th:text="${board.createDate}">
+			<td th:text="${board.cnt}">
+		</tr>
+	</table>
+	<br>
+	<a th:href="insertBoard">새글 등록</a>
 </body>
 </html>

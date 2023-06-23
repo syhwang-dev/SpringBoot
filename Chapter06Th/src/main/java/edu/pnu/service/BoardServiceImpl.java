@@ -1,5 +1,6 @@
 package edu.pnu.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public void insertBoard(Board board) {
+		board.setCreateDate(new Date());
+		board.setCnt(0L);
 		boardRepo.save(board);
 	}
 	
