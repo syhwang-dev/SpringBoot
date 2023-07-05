@@ -30,5 +30,4 @@ public class Member {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return AuthorityUtils.createAuthorityList(role);
 	}
-	
 }
